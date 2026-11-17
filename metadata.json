@@ -1,0 +1,11 @@
+{
+  "name": "MANA HEALTH CONNECT – మన ఆరోగ్య సేవలు",
+  "description": "Comprehensive healthcare platform for Andhra Pradesh & Telangana: doctor appointments, hospital directory, emergency 108/102 ambulance services, medicine reminders, lab tests, blood donors, and bilingual AI health assistant.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

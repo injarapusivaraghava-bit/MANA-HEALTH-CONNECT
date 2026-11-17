@@ -1,0 +1,29 @@
+{
+  "name": "MANA HEALTH CONNECT – మన ఆరోగ్య సేవలు",
+  "short_name": "Mana Health",
+  "description": "మీ ఆరోగ్యం – మా ప్రాధాన్యత. Healthcare coordination, verified doctors, 108 ambulance, medicine reminders, and health records.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    {
+      "src": "/play-store-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

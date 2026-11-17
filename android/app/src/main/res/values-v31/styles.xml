@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ManaHealth" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">#1D4ED8</item>
+        <item name="android:colorPrimaryDark">#1E3A8A</item>
+        <item name="android:colorAccent">#16A34A</item>
+        <item name="android:statusBarColor">#1E3A8A</item>
+    </style>
+
+    <!-- Android 12+ (API 31+) Native System Splash Screen Branding -->
+    <style name="Theme.ManaHealth.Splash" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:statusBarColor">#0284C7</item>
+        <item name="android:windowSplashScreenBackground">#FFFFFF</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icon_inset</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">#FFFFFF</item>
+        <item name="android:windowSplashScreenAnimationDuration">800</item>
+    </style>
+</resources>

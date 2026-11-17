@@ -1,0 +1,362 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Base user account and role assignment",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "phoneNumber": { "type": "string", "maxLength": 20 },
+        "role": { "type": "string", "enum": ["patient", "doctor", "hospital", "superadmin"] },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["uid", "role"]
+    },
+    "PatientProfile": {
+      "title": "PatientProfile",
+      "description": "Patient demographic, regional location, and emergency data",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "age": { "type": "number" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "phone": { "type": "string", "maxLength": 20 },
+        "district": { "type": "string", "maxLength": 100 },
+        "mandal": { "type": "string", "maxLength": 100 },
+        "village": { "type": "string", "maxLength": 100 },
+        "emergencyContact": { "type": "string", "maxLength": 20 },
+        "bloodGroup": { "type": "string", "maxLength": 10 },
+        "consentAccepted": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "name", "phone", "district"]
+    },
+    "FamilyMember": {
+      "title": "FamilyMember",
+      "description": "Linked family member under a patient profile",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "relationship": { "type": "string", "maxLength": 50 },
+        "age": { "type": "number" },
+        "gender": { "type": "string", "maxLength": 20 },
+        "bloodGroup": { "type": "string", "maxLength": 10 },
+        "isMinor": { "type": "boolean" },
+        "guardianConsent": { "type": "boolean" }
+      },
+      "required": ["patientId", "name", "relationship"]
+    },
+    "Doctor": {
+      "title": "Doctor",
+      "description": "Verified medical practitioner profile",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 100 },
+        "nameTe": { "type": "string", "maxLength": 100 },
+        "specialty": { "type": "string", "maxLength": 100 },
+        "specialtyTe": { "type": "string", "maxLength": 100 },
+        "qualifications": { "type": "string", "maxLength": 200 },
+        "registrationNumber": { "type": "string", "maxLength": 100 },
+        "hospitalId": { "type": "string", "maxLength": 128 },
+        "hospitalName": { "type": "string", "maxLength": 200 },
+        "experienceYears": { "type": "number" },
+        "consultationFee": { "type": "number" },
+        "availableSlots": { "type": "string", "maxLength": 500 },
+        "district": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "verified": { "type": "boolean" },
+        "rating": { "type": "number" }
+      },
+      "required": ["name", "specialty", "registrationNumber", "consultationFee", "district"]
+    },
+    "Hospital": {
+      "title": "Hospital",
+      "description": "Government or private hospital details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 200 },
+        "nameTe": { "type": "string", "maxLength": 200 },
+        "type": { "type": "string", "enum": ["government", "private"] },
+        "district": { "type": "string", "maxLength": 100 },
+        "mandal": { "type": "string", "maxLength": 100 },
+        "address": { "type": "string", "maxLength": 300 },
+        "phone": { "type": "string", "maxLength": 50 },
+        "emergencyPhone": { "type": "string", "maxLength": 50 },
+        "specialties": { "type": "string", "maxLength": 500 },
+        "hasICU": { "type": "boolean" },
+        "hasBloodBank": { "type": "boolean" },
+        "hasEmergency24x7": { "type": "boolean" },
+        "mapUrl": { "type": "string", "maxLength": 500 },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["name", "type", "district", "address", "phone"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Patient consultation bookings with doctors",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "maxLength": 128 },
+        "patientName": { "type": "string", "maxLength": 100 },
+        "doctorId": { "type": "string", "maxLength": 128 },
+        "doctorName": { "type": "string", "maxLength": 100 },
+        "specialty": { "type": "string", "maxLength": 100 },
+        "hospitalName": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 50 },
+        "slot": { "type": "string", "maxLength": 50 },
+        "fee": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled", "completed"] },
+        "notes": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["patientId", "doctorId", "date", "slot", "status"]
+    },
+    "Prescription": {
+      "title": "Prescription",
+      "description": "Medical prescription from doctor or patient uploaded",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "maxLength": 128 },
+        "doctorId": { "type": "string", "maxLength": 128 },
+        "doctorName": { "type": "string", "maxLength": 100 },
+        "date": { "type": "string", "maxLength": 50 },
+        "medicines": { "type": "string", "maxLength": 2000 },
+        "instructions": { "type": "string", "maxLength": 1000 },
+        "fileUrl": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["patientId", "date"]
+    },
+    "MedicationSchedule": {
+      "title": "MedicationSchedule",
+      "description": "Scheduled medicine reminders with doses and intervals",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "maxLength": 128 },
+        "familyMemberName": { "type": "string", "maxLength": 100 },
+        "medicineName": { "type": "string", "maxLength": 150 },
+        "dosage": { "type": "string", "maxLength": 50 },
+        "schedule": { "type": "string", "maxLength": 100 },
+        "morning": { "type": "boolean" },
+        "afternoon": { "type": "boolean" },
+        "night": { "type": "boolean" },
+        "timing": { "type": "string", "enum": ["before_food", "after_food"] },
+        "takenToday": { "type": "boolean" },
+        "startDate": { "type": "string", "maxLength": 50 },
+        "daysRemaining": { "type": "number" }
+      },
+      "required": ["patientId", "medicineName", "dosage"]
+    },
+    "HealthRecord": {
+      "title": "HealthRecord",
+      "description": "Medical report, lab result, or diagnostic file",
+      "type": "object",
+      "properties": {
+        "patientId": { "type": "string", "maxLength": 128 },
+        "familyMemberName": { "type": "string", "maxLength": 100 },
+        "title": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 50 },
+        "date": { "type": "string", "maxLength": 50 },
+        "fileUrl": { "type": "string", "maxLength": 500 },
+        "fileName": { "type": "string", "maxLength": 150 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "uploadedAt": { "type": "string" }
+      },
+      "required": ["patientId", "title", "category", "date"]
+    },
+    "LabTest": {
+      "title": "LabTest",
+      "description": "Diagnostic laboratory tests and service offerings",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 150 },
+        "nameTe": { "type": "string", "maxLength": 150 },
+        "category": { "type": "string", "maxLength": 100 },
+        "price": { "type": "number" },
+        "labName": { "type": "string", "maxLength": 200 },
+        "homeCollection": { "type": "boolean" },
+        "reportTime": { "type": "string", "maxLength": 50 },
+        "district": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["name", "price", "labName", "district"]
+    },
+    "AmbulanceContact": {
+      "title": "AmbulanceContact",
+      "description": "Government 108/102 and verified private ambulance contacts",
+      "type": "object",
+      "properties": {
+        "serviceName": { "type": "string", "maxLength": 150 },
+        "serviceNameTe": { "type": "string", "maxLength": 150 },
+        "type": { "type": "string", "enum": ["government_108", "government_102", "emergency_112", "private_icu", "private_basic"] },
+        "phone": { "type": "string", "maxLength": 50 },
+        "district": { "type": "string", "maxLength": 100 },
+        "mandal": { "type": "string", "maxLength": 100 },
+        "is24x7": { "type": "boolean" },
+        "hasVentilator": { "type": "boolean" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["serviceName", "type", "phone", "district"]
+    },
+    "BloodDonor": {
+      "title": "BloodDonor",
+      "description": "Registered and consenting blood donor details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "bloodGroup": { "type": "string", "maxLength": 10 },
+        "district": { "type": "string", "maxLength": 100 },
+        "mandal": { "type": "string", "maxLength": 100 },
+        "phone": { "type": "string", "maxLength": 20 },
+        "lastDonated": { "type": "string", "maxLength": 50 },
+        "available": { "type": "boolean" },
+        "consentGiven": { "type": "boolean" }
+      },
+      "required": ["name", "bloodGroup", "district", "phone", "consentGiven"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "System reminders, booking updates, and health alerts",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 150 },
+        "message": { "type": "string", "maxLength": 500 },
+        "type": { "type": "string", "maxLength": 50 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "message"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Subscription and teleconsultation payments",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "amount": { "type": "number" },
+        "currency": { "type": "string", "maxLength": 10 },
+        "plan": { "type": "string", "enum": ["free", "basic", "premium", "family"] },
+        "status": { "type": "string", "enum": ["pending", "completed", "failed"] },
+        "transactionId": { "type": "string", "maxLength": 100 },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "amount", "plan", "status"]
+    },
+    "Complaint": {
+      "title": "Complaint",
+      "description": "User grievance or hospital/doctor feedback",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 100 },
+        "category": { "type": "string", "maxLength": 50 },
+        "subject": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["open", "investigating", "resolved", "closed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "category", "subject", "description"]
+    },
+    "Consent": {
+      "title": "Consent",
+      "description": "User consent log for privacy, ABDM integration, and AI assistant",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "consentType": { "type": "string", "maxLength": 50 },
+        "agreed": { "type": "boolean" },
+        "timestamp": { "type": "string" },
+        "ipOrUserAgent": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["userId", "consentType", "agreed"]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized administrators with verified credentials",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "maxLength": 256 },
+        "role": { "type": "string", "maxLength": 50 },
+        "name": { "type": "string", "maxLength": 100 },
+        "addedAt": { "type": "string" }
+      },
+      "required": ["email", "role"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user core profile and authentication roles"
+    },
+    "/patient_profiles/{profileId}": {
+      "schema": "PatientProfile",
+      "description": "Patient demographic, regional location, and emergency data"
+    },
+    "/family_members/{memberId}": {
+      "schema": "FamilyMember",
+      "description": "Family members linked to a patient profile"
+    },
+    "/doctors/{doctorId}": {
+      "schema": "Doctor",
+      "description": "Directory of verified medical doctors"
+    },
+    "/hospitals/{hospitalId}": {
+      "schema": "Hospital",
+      "description": "Government and private hospital listings"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": "Appointment",
+      "description": "Doctor appointments and booking requests"
+    },
+    "/prescriptions/{prescriptionId}": {
+      "schema": "Prescription",
+      "description": "Prescription records issued by doctors or uploaded by patients"
+    },
+    "/medication_schedules/{scheduleId}": {
+      "schema": "MedicationSchedule",
+      "description": "Daily medication reminder intervals and adherence tracking"
+    },
+    "/health_records/{recordId}": {
+      "schema": "HealthRecord",
+      "description": "Digital health documents, lab PDFs, and scan images"
+    },
+    "/lab_tests/{testId}": {
+      "schema": "LabTest",
+      "description": "Diagnostic tests catalog and home collection bookings"
+    },
+    "/ambulance_contacts/{contactId}": {
+      "schema": "AmbulanceContact",
+      "description": "Emergency 108/102 and private ambulance services directory"
+    },
+    "/blood_donors/{donorId}": {
+      "schema": "BloodDonor",
+      "description": "Consenting blood donor database with blood group and contact"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "System notifications and medicine/appointment alerts"
+    },
+    "/payments/{paymentId}": {
+      "schema": "Payment",
+      "description": "User subscription plans and fee records"
+    },
+    "/complaints/{complaintId}": {
+      "schema": "Complaint",
+      "description": "Grievances and user issue tracking"
+    },
+    "/consents/{consentId}": {
+      "schema": "Consent",
+      "description": "Data privacy, teleconsultation, and ABDM consent tracking"
+    },
+    "/admin_users/{adminId}": {
+      "schema": "AdminUser",
+      "description": "Authorized admin users access verification"
+    }
+  }
+}

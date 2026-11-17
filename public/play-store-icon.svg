@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <clipPath id="cardClip">
+      <rect x="8" y="8" width="496" height="496" rx="88" />
+    </clipPath>
+    <linearGradient id="redRibbon" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <linearGradient id="blueRibbon" x1="40" y1="0" x2="120" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#1e40af" />
+    </linearGradient>
+    <linearGradient id="greenLeaf" x1="20" y1="80" x2="104" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#16a34a" />
+      <stop offset="55%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+  </defs>
+
+  <!-- Play Store Icon White Rounded Square Canvas -->
+  <rect x="8" y="8" width="496" height="496" rx="88" fill="#ffffff" />
+
+  <!-- Clipped Bottom Healthcare Green & Blue Accent Wave -->
+  <g clip-path="url(#cardClip)">
+    <path d="M0 432 Q165 468 345 438 Q440 424 512 440 L512 512 L0 512 Z" fill="#16a34a" />
+    <path d="M0 452 Q185 486 365 454 Q450 440 512 456 L512 512 L0 512 Z" fill="#1d4ed8" />
+  </g>
+
+  <!-- Crisp Blue-Sky Outer Rim -->
+  <rect x="8" y="8" width="496" height="496" rx="88" fill="none" stroke="#93c5fd" stroke-width="6" />
+
+  <!-- Centered Logo Group (Heart + Cross + Family + Green Leaf) -->
+  <g transform="translate(88, 22) scale(2.8)">
+    <!-- Left Red Heart Ribbon -->
+    <path
+      d="M58 29 C50 16 36 11 23 18 C10 26 8 44 16 62 C24 79 42 90 55 95 C41 85 30 74 26 58 C22 43 26 28 38 25 C46 23 53 27 58 34 Z"
+      fill="url(#redRibbon)"
+    />
+
+    <!-- Right Blue Heart Ribbon + Seamless Medical Cross Lobe -->
+    <path
+      d="M56 32 C61 17 75 9 90 13 C105 17 112 34 107 52 C101 73 82 88 62 95 C78 85 92 71 95 54 C97 46 92 45 84 46 C73 46 63 39 56 32 Z"
+      fill="url(#blueRibbon)"
+    />
+    <circle cx="85" cy="30" r="16" fill="url(#blueRibbon)" />
+
+    <!-- Crisp White Medical Cross Inside Upper-Right Blue Lobe -->
+    <rect x="81.5" y="21" width="7" height="18" rx="1.6" fill="#ffffff" />
+    <rect x="76" y="26.5" width="18" height="7" rx="1.6" fill="#ffffff" />
+
+    <!-- Family Silhouette Inside Heart -->
+    <!-- Father (Blue) -->
+    <circle cx="43" cy="48" r="6.8" fill="#1d4ed8" />
+    <path d="M31 85 C31 64 36 58 43 58 C50 58 54 64 54 86 Q42 87 31 85 Z" fill="#1d4ed8" />
+
+    <!-- Mother (Green) -->
+    <circle cx="76.5" cy="51.5" r="6.2" fill="#16a34a" />
+    <path d="M66.5 86 C66.5 66.5 70.5 61 76.5 61 C82.5 61 87.5 66.5 87.5 84 Q77 87 66.5 86 Z" fill="#16a34a" />
+
+    <!-- Child (Warm Orange with Crisp White Halo) -->
+    <path
+      d="M49.5 66 C52 66 55 70 57 72.5 L63 72.5 C65 70 68 66 70.5 66 C72 68.5 69 75 65.5 77.5 L65.5 90 Q60 91 54.5 90 L54.5 77.5 C51 75 48 68.5 49.5 66 Z"
+      fill="#f97316"
+      stroke="#ffffff"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <circle cx="60" cy="63" r="5.2" fill="#f97316" stroke="#ffffff" stroke-width="2" />
+
+    <!-- Sweeping Green Leaf Base (Covers lower heart & family base smoothly) -->
+    <path
+      d="M19 82 C42 96 77 94 103 74 C92 99 57 110 26 96 C21 94 18 88 19 82 Z"
+      fill="url(#greenLeaf)"
+    />
+    <path d="M27 89 Q63 98 96 79" fill="none" stroke="#dcfce7" stroke-width="1.6" stroke-linecap="round" />
+  </g>
+
+  <!-- App Name Typography Inside Play Store Icon -->
+  <text
+    x="256"
+    y="372"
+    text-anchor="middle"
+    font-family="Noto Sans, Liberation Sans, DejaVu Sans, sans-serif"
+    font-weight="900"
+    font-size="60"
+    letter-spacing="1"
+    fill="#1e3a8a"
+  >MANA</text>
+  <text
+    x="256"
+    y="420"
+    text-anchor="middle"
+    font-family="Noto Sans, Liberation Sans, DejaVu Sans, sans-serif"
+    font-weight="900"
+    font-size="42"
+    letter-spacing="0.5"
+    fill="#dc2626"
+  >HEALTH CONNECT</text>
+</svg>
